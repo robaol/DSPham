@@ -8,7 +8,7 @@
 #include "k4icy.h"
 #include "tf3lj_dec.h"
 
-rgb_lcd lcd;
+LcdType lcd;
 
 //Min volume - '1' char 0x00
 uint8_t custom0[8] = {
@@ -173,7 +173,9 @@ uint8_t lcd_colourG = 32;
 uint8_t lcd_colourB = 32;
 
 void lcd_setcolour(void) {
+#ifdef USE_RGB_LCD  
   lcd.setRGB(lcd_colourR, lcd_colourG, lcd_colourB);  
+#endif
 }
 
 void lcd_setup() {

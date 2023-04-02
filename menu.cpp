@@ -1,8 +1,14 @@
 // Example take from https://github.com/neu-rah/ArduinoMenu/
 // Original license LGPL 2.1+
 
+#include "lcd.h"
 #include <menu.h>
+#ifdef USE_RGB_LCD
 #include <menuIO/groveRGBLCDOut.h>
+#endif
+#ifdef USE_MATHERTEL_LCD
+#include <menuIO/PCF8574Out.h>
+#endif
 #include <menuIO/chainStream.h>
 #include <menuIO/clickEncoderIn.h>
 
@@ -15,12 +21,10 @@
 #include "morseGen.h"
 #include "dynamicFilters.h"
 #include "dspfilter.h"
-#include "lcd.h"
 #include "settings.h"
 
 using namespace Menu;
 
-extern rgb_lcd lcd;
 
 #define encA 3
 #define encB 2
@@ -350,10 +354,19 @@ MENU(mainMenu, "Top menu", Menu::doNothing, Menu::noEvent, Menu::wrapStyle
 
 MENU_INPUTS(in,&encStream);
 
+#ifdef USE_RGB_LCD
 MENU_OUTPUTS(out,MAX_DEPTH
-  ,GROVERGBLCD_OUT(lcd, {0, 0, 16, 2})
+  ,GROVERGBLCD_OUT(lcd, {0, 0, LCD_COLS, LCD_ROWS})
   ,NONE//must have 2 items at least
 );
+#endif
+
+#ifdef USE_MATHERTEL_LCD
+MENU_OUTPUTS(out,MAX_DEPTH
+  ,LCD_OUT(lcd, {0, 0, LCD_COLS, LCD_ROWS})
+  ,NONE//must have 2 items at least
+);
+#endif
 
 NAVROOT(nav,mainMenu,MAX_DEPTH,in,out);
 

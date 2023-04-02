@@ -4,10 +4,9 @@
 
 #include "global.h"
 
-#include "rgb_lcd.h"
-#include "morseGen.h"
+#include "lcd.h"
 
-extern rgb_lcd lcd;
+#include "morseGen.h"
 
 // WARNING - the teensy 4.0 onboard led on pin13 is also shared with the SDcard on the
 // audio daughterboard - so, if we ever go to use that SD slot, we'll need to find another

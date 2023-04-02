@@ -2,7 +2,6 @@
 
 #include "global.h"
 
-#include "rgb_lcd.h"
 #include "morseDecode.h"
 #include "morseGen.h"
 

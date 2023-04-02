@@ -7,8 +7,6 @@
 #include "global.h"
 #include "menu.h"
 
-#include "rgb_lcd.h"
-
 #include "LMS_NR.h"
 #include "nr_kim.h"
 #include "fir.h"
